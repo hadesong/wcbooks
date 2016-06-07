@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>找书啊喂</title>
+        <!-- 新 Bootstrap 核心 CSS 文件 -->
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css.css')}}">
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+
+        <script type="text/javascript">
+            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+
+  var msViewportStyle = document.createElement("style");
+  msViewportStyle.appendChild(
+    document.createTextNode(
+      "@-ms-viewport{width:auto!important}"
+    )
+  );
+  document.getElementsByTagName("head")[0].
+    appendChild(msViewportStyle);
+}
+        </script>
+    </head>
+
+    <body id="body">
+        <div class="page-header">
+            <h1>官人 , 这是你要的结果<small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;......</small></h1>
+        </div>
+        {% if list_len %}
+        {% for x in range(0 , list_len)%}
+        <div class="media" id="media{{x}}" >
+            <div class="media-left media-middle">
+                <img class="media-object" src="{{pic[x]}}" onerror="javascript:this.src='https://ooo.0o0.ooo/2016/06/04/57534f1b38fe2.jpg';" width="100px" alt="封面君走丢了...">
+            </div>
+            <div class="media-body">
+                <br>
+                <h4 class="media-heading"><b>{{ book_name[x]}}</b></h4>
+                 <br>
+                 <br>
+                <a href="#">豆瓣评分<span class="badge">{{ rating[x] }}</span></a>
+                <br> {{author[x]}}
+                <p id="url{{x}}" hidden="hidden">{{ book_url[x] }}</p>
+            </div>
+        </div>
+        <hr> {% endfor %}
+        {% else %}
+<div id="p" style="width:300px;margin-left:auto;margin-right:auto;" >
+<img  src="https://ooo.0o0.ooo/2016/06/05/5754f38adb7d5.gif
+">
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>纳尼 !!</strong>劳资神马也找不到!!
+</div>
+<h3></h3>
+        {% endif %}
+
+<!-- ================================================================================-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#media0").click(function(){
+            var u = document.getElementById("url0").innerHTML
+                $.ajax({
+                    url: "/bookinfo",
+                    type: "POST",
+                    data: {
+                        "bookurl":u,
+                    },
+                    beforeSend: function() {
+                        $('.mask').html('<div class="loader"><div class="loader-inner"><div class="loader-line-wrap"><div class="loader-line"></div></div><div class="loader-line-wrap">    <div class="loader-line"></div> </div><div class="loader-line-wrap"><div class="loader-line"></div></div>       <div class="loader-line-wrap"><div class="loader-line"></div></div><div class="loader-line-wrap"><div class="loader-line"></div></div></div></div>').appendTo("body")
+                    },
+                    complete: function(data) {
+                        $('.mask').remove();
+                    },
+                    success: function(data) {
+                        //获取的结果替换body标签
+                        $('#body').html(data);
+                        //移动到页面顶部(ajax在页面下端获取数据后不刷新 ,导致页面是从中间开始的 ..)
+                         $('body,html').animate({scrollTop:0},1000);
+                    },
+                    error: function(data) {
+                        alert("数据异常！");
+                    }
+                });
+        })
+    })
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#media1").click(function(){
+            var u = document.getElementById("url1").innerHTML
+                $.ajax({
+                    url: "/bookinfo",
+                    type: "POST",
+                    data: {
+                        "bookurl":u,
+                    },
+                    beforeSend: function() {
+                        $('.mask').html('<div class="loader"><div class="loader-inner"><div class="loader-line-wrap"><div class="loader-line"></div></div><div class="loader-line-wrap">    <div class="loader-line"></div> </div><div class="loader-line-wrap"><div class="loader-line"></div></div>       <div class="loader-line-wrap"><div class="loader-line"></div></div><div class="loader-line-wrap"><div class="loader-line"></div></div></div></div>').appendTo("body")
+                    },
+                    complete: function(data) {
+                        $('.mask').remove();
+                    },
+                    success: function(data) {
+                        $('#body').html(data);
+                         $('body,html').animate({scrollTop:0},1000);
+                    },
+                    error: function(data) {
+                        alert("数据异常！");
+                    }
+                });
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#media2").click(function(){
+            var u = document.getElementById("url2").innerHTML
+                $.ajax({
+                    url: "/bookinfo",
+                    type: "POST",
+                    data: {
+                        "bookurl":u,
+                    },
+                    beforeSend: function() {
+                        $('.mask').html('<div class="loader"><div class="loader-inner"><div class="loader-line-wrap"><div class="loader-line"></div></div><div class="loader-line-wrap">    <div class="loader-line"></div> </div><div class="loader-line-wrap"><div class="loader-line"></div></div>       <div class="loader-line-wrap"><div class="loader-line"></div></div><div class="loader-line-wrap"><div class="loader-line"></div></div></div></div>').appendTo("body")
+                    },
+                    complete: function(data) {
+                        $('.mask').remove();
+                    },
+                    success: function(data) {
+                        $('#body').html(data);
+                         $('body,html').animate({scrollTop:0},1000);
+                    },
+                    error: function(data) {
+                        alert("数据异常！");
+                    }
+                });
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#media3").click(function(){
+            var u = document.getElementById("url3").innerHTML
+                $.ajax({
+                    url: "/bookinfo",
+                    type: "POST",
+                    data: {
+                        "bookurl":u,
+                    },
+                    beforeSend: function() {
+                        $('.mask').html('<div class="loader"><div class="loader-inner"><div class="loader-line-wrap"><div class="loader-line"></div></div><div class="loader-line-wrap">    <div class="loader-line"></div> </div><div class="loader-line-wrap"><div class="loader-line"></div></div>       <div class="loader-line-wrap"><div class="loader-line"></div></div><div class="loader-line-wrap"><div class="loader-line"></div></div></div></div>').appendTo("body")
+                    },
+                    complete: function(data) {
+                        $('.mask').remove();
+                    },
+                    success: function(data) {
+                        $('#body').html(data);
+                         $('body,html').animate({scrollTop:0},1000);
+                    },
+                    error: function(data) {
+                        alert("数据异常！");
+                    }
+                });
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#media4").click(function(){
+            var u = document.getElementById("url4").innerHTML
+                $.ajax({
+                    url: "/bookinfo",
+                    type: "POST",
+                    data: {
+                        "bookurl":u,
+                    },
+                    beforeSend: function() {
+                        $('.mask').html('<div class="loader"><div class="loader-inner"><div class="loader-line-wrap"><div class="loader-line"></div></div><div class="loader-line-wrap">    <div class="loader-line"></div> </div><div class="loader-line-wrap"><div class="loader-line"></div></div>       <div class="loader-line-wrap"><div class="loader-line"></div></div><div class="loader-line-wrap"><div class="loader-line"></div></div></div></div>').appendTo("body")
+                    },
+                    complete: function(data) {
+                        $('.mask').remove();
+                    },
+                    success: function(data) {
+                        $('#body').html(data);
+                         $('body,html').animate({scrollTop:0},1000);
+                    },
+                    error: function(data) {
+                        alert("数据异常！");
+                    }
+                });
+        })
+    })
+</script>
+
+        <div class="mask"></div>
+
+        <div id="foot">
+        <br>
+        <br>
+          <span class="glyphicon glyphicon-heart-empty">~~这是一首简单的小情歌~~<span class="glyphicon glyphicon-heart-empty"></span></span>
+        </div>
+    </body>
+
+</html>
+
