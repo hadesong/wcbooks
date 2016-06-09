@@ -44,3 +44,6 @@
 
 
 ![image](https://github.com/hadesong/wcbooks/raw/master/app_package/static/3.jpg)
+
+公众号链接
+![image](https://github.com/hadesong/wcbooks/raw/master/app_package/static/Hades.jpg)

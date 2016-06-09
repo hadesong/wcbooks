@@ -31,19 +31,18 @@ def index():
 def token():
     base_url = app.config['BASE_URL']
     echostr = request.args.get('echostr')
+
     if echostr:
         return echostr
+
     if request.method == 'POST':
         rec = request.stream.read()
-        global xml_rec
         xml_rec = ET.fromstring(rec)
         toUser = xml_rec.find('ToUserName').text
         frUser = xml_rec.find('FromUserName').text
         crTime = xml_rec.find('CreateTime').text
         msType  = xml_rec.find('MsgType').text
-
-
-        msg = ""
+        
         ti = str(int(time.time()))
         if msType == "text":
             #con = urllib.quote(xml_rec.find("Content").text.encode('utf-8'))
